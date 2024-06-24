@@ -1,8 +1,11 @@
 import React from 'react'
 
-function TotalScore() {
+function TotalScore({score}) {
   return (
-    <div>TotalScore</div>
+    <div className='flex flex-col justify-end items-center h-full'>
+      <h1 className='text-8xl font-semibold'>{score}</h1>
+      <p className='text-lg'>Total Score</p>
+    </div>
   )
 }
 
