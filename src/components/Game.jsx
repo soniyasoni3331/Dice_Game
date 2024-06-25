@@ -21,13 +21,23 @@ function Game() {
     }
 
     const handleError = ()=>{
-        if(!selectNum){
             setError("You have not selected any number");
-        }
     }
 
+    const randomNumber = generateRandomNumber(1,7);
+
     const rollDice = () =>{
-       
+        // if(!selectNum){
+        //     handleError();
+        // }
+        if(selectNum === randomNumber){
+            setCurrentDice(randomNumber);
+            setScore((prev)=> prev + randomNumber)
+            console.log(currentDice);
+            console.log(selectNum)
+        }else{
+            setError(Sele)   
+        }
     }
 
     
@@ -39,7 +49,7 @@ function Game() {
             <TotalScore score={score}/>
             </div>
             <div>
-            <NumberSelector error={error} setSelectNum={setSelectNum}/>
+            <NumberSelector error={error} setSelectNum={setSelectNum} selectedNum={selectNum}/>
             </div>
         </div>
         {/* dice roll section */}
@@ -47,7 +57,7 @@ function Game() {
 
         <div className='flex flex-col gap-y-[15px] items-center'>
         <div>
-            <RollDice rollDice={selectNum} currentDice={currentDice}/>
+            <RollDice RollDice={rollDice} currentDice={currentDice} />
         </div>
         <div>
             <p>Click On the Dice to roll</p>
