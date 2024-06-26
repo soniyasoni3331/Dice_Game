@@ -7,7 +7,7 @@ import RollDice from './RollDice';
 function Game() {
     const [showRule, setShowRule] = useState(false);
     const [score, setScore] = useState(0);
-    const [selectNum, setSelectNum] = useState();
+    const [selectNum, setSelectedNum] = useState(0);
     const [currentDice, setCurrentDice] = useState(1);
     const [error, setError] = useState("");
 
@@ -19,6 +19,11 @@ function Game() {
     const generateRandomNumber = (min, max)=>{
         return Math.floor(Math.random() * (max - min) + min);
     }
+    const handleResetScore =()=>{
+        setScore(0);
+        setCurrentDice(1);
+        setSelectedNum(0);
+    }
 
     const handleError = ()=>{
             setError("You have not selected any number");
@@ -27,16 +32,13 @@ function Game() {
     const randomNumber = generateRandomNumber(1,7);
 
     const rollDice = () =>{
-        // if(!selectNum){
-        //     handleError();
-        // }
-        if(selectNum === randomNumber){
-            setCurrentDice(randomNumber);
-            setScore((prev)=> prev + randomNumber)
-            console.log(currentDice);
-            console.log(selectNum)
+        if(selectNum === 0){
+            handleError()
         }else{
-            setError(Sele)   
+            setCurrentDice(randomNumber);
+            if(randomNumber == selectNum){
+                setScore((prev)=> prev + randomNumber)
+            }
         }
     }
 
@@ -49,7 +51,7 @@ function Game() {
             <TotalScore score={score}/>
             </div>
             <div>
-            <NumberSelector error={error} setSelectNum={setSelectNum} selectedNum={selectNum}/>
+            <NumberSelector error={error} setSelectedNum={setSelectedNum} selectedNum={selectNum}/>
             </div>
         </div>
         {/* dice roll section */}
