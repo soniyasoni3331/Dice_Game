@@ -36,6 +36,8 @@ function Game() {
             setCurrentDice(randomNumber);
             if(randomNumber == selectNum){
                 setScore((prev)=> prev + randomNumber)
+            }else{
+                setScore((prev)=> prev - 1);
             }
             setError("")
         }
